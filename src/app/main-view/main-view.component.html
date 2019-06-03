@@ -1,0 +1,111 @@
+<!-- Input data -->
+<div class="row mb-4">
+
+    <!-- Title -->
+    <div class="col-12">
+        <h1>Input data</h1>
+        <hr/>
+    </div>
+
+    <!-- Table -->
+    <div class="col-12">
+        <div class="mat-elevation-z8">
+            <table class="w-100" mat-table [dataSource]="gridData.data">
+
+                <!-- Columns -->
+                <ng-container *ngFor="let column of gridData.columns" [matColumnDef]="column.propertyName">
+                    <th mat-header-cell *matHeaderCellDef>{{ column.displayName }}</th>
+                    <td mat-cell *matCellDef="let element"> {{element[column.propertyName]}} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="gridData.extractColumnPropertyNames(gridData.columns)"></tr>
+                <tr mat-row *matRowDef="let row; columns: gridData.extractColumnPropertyNames(gridData.columns);"></tr>
+
+            </table>
+
+            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        </div>
+    </div>
+
+
+</div>
+<!-- /Input data -->
+
+<!-- Distance chart -->
+<div class="row mb-4">
+
+    <!-- Title -->
+    <div class="col-12">
+        <h1>Distance chart</h1>
+        <hr/>
+    </div>
+
+    <!-- Chart -->
+    <div class="col-12">
+        <kendo-chart [zoomable]="true">
+            <kendo-chart-series>
+                <kendo-chart-series-item type="scatterLine"
+                                         [data]="distanceChartData.data"
+                                         [xField]="distanceChartData.xField"
+                                         [yField]="distanceChartData.yField"
+                >
+                </kendo-chart-series-item>
+            </kendo-chart-series>
+            <kendo-chart-x-axis>
+                <kendo-chart-x-axis-item [title]="{ text: distanceChartData.xAxisItem.titleText }"
+                                         [labels]="{ format: distanceChartData.xAxisItem.labelFormat }">
+                </kendo-chart-x-axis-item>
+            </kendo-chart-x-axis>
+            <kendo-chart-y-axis>
+                <kendo-chart-y-axis-item [title]="{ text: distanceChartData.yAxisItem.titleText }"
+                                         [labels]="{ format: distanceChartData.yAxisItem.labelFormat }">
+                </kendo-chart-y-axis-item>
+            </kendo-chart-y-axis>
+            <kendo-chart-tooltip [format]="distanceChartData.tooltipFormat">
+            </kendo-chart-tooltip>
+        </kendo-chart>
+    </div>
+    <!-- /Chart -->
+
+</div>
+<!-- /Distance chart -->
+
+<!-- Speed chart -->
+<div class="row mb-4">
+
+    <!-- Title -->
+    <div class="col-12">
+        <h1>Speed chart</h1>
+        <hr/>
+    </div>
+
+    <!-- Chart -->
+    <div class="col-12">
+        <kendo-chart [zoomable]="true">
+            <kendo-chart-series>
+                <kendo-chart-series-item type="scatterLine"
+                                         [data]="speedChartData.data"
+                                         [xField]="speedChartData.xField"
+                                         [yField]="speedChartData.yField"
+                >
+                </kendo-chart-series-item>
+            </kendo-chart-series>
+            <kendo-chart-x-axis>
+                <kendo-chart-x-axis-item [title]="{ text: speedChartData.xAxisItem.titleText }"
+                                         [labels]="{ format: speedChartData.xAxisItem.labelFormat }">
+                </kendo-chart-x-axis-item>
+            </kendo-chart-x-axis>
+            <kendo-chart-y-axis>
+                <kendo-chart-y-axis-item [title]="{ text: speedChartData.yAxisItem.titleText }"
+                                         [labels]="{ format: speedChartData.yAxisItem.labelFormat }">
+                </kendo-chart-y-axis-item>
+            </kendo-chart-y-axis>
+            <kendo-chart-tooltip [format]="speedChartData.tooltipFormat">
+            </kendo-chart-tooltip>
+        </kendo-chart>
+    </div>
+    <!-- /Chart -->
+
+
+</div>
+<!-- Speed chart -->
