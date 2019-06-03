@@ -1,3 +1,23 @@
+<!-- File upload -->
+<div class="row mb-4">
+
+    <!-- Title -->
+    <div class="col-12">
+        <h1>Upload file</h1>
+        <hr/>
+    </div>
+
+    <!-- Upload -->
+    <div class="col-12">
+        <file-drop dropZoneLabel="Drop files here" (onFileDrop)="onFileDropped($event)">
+            <span>Drag your input files</span>
+        </file-drop>
+    </div>
+    <!-- /Upload -->
+
+</div>
+<!-- /File upload -->
+
 <!-- Input data -->
 <div class="row mb-4">
 
@@ -9,17 +29,20 @@
 
     <!-- Table -->
     <div class="col-12">
-        <div class="mat-elevation-z8">
-            <table class="w-100" mat-table [dataSource]="gridData.data">
+        <ng-container *ngIf="!gridData">
+            <ng-container *ngTemplateOutlet="noDataTemplate"></ng-container>
+        </ng-container>
+        <div [class.d-none]="!gridData" class="mat-elevation-z8">
+            <table class="w-100" mat-table [dataSource]="gridData?.data">
 
                 <!-- Columns -->
-                <ng-container *ngFor="let column of gridData.columns" [matColumnDef]="column.propertyName">
+                <ng-container *ngFor="let column of gridData?.columns" [matColumnDef]="column.propertyName">
                     <th mat-header-cell *matHeaderCellDef>{{ column.displayName }}</th>
                     <td mat-cell *matCellDef="let element"> {{element[column.propertyName]}} </td>
                 </ng-container>
 
-                <tr mat-header-row *matHeaderRowDef="gridData.extractColumnPropertyNames(gridData.columns)"></tr>
-                <tr mat-row *matRowDef="let row; columns: gridData.extractColumnPropertyNames(gridData.columns);"></tr>
+                <tr mat-header-row *matHeaderRowDef="gridData?.extractColumnPropertyNames(gridData.columns)"></tr>
+                <tr mat-row *matRowDef="let row; columns: gridData?.extractColumnPropertyNames(gridData.columns);"></tr>
 
             </table>
 
@@ -42,26 +65,29 @@
 
     <!-- Chart -->
     <div class="col-12">
-        <kendo-chart [zoomable]="true">
+        <ng-container *ngIf="!distanceChartData">
+            <ng-container *ngTemplateOutlet="noDataTemplate"></ng-container>
+        </ng-container>
+        <kendo-chart [class.d-none]="!distanceChartData" [zoomable]="true" [pannable]="true">
             <kendo-chart-series>
                 <kendo-chart-series-item type="scatterLine"
-                                         [data]="distanceChartData.data"
-                                         [xField]="distanceChartData.xField"
-                                         [yField]="distanceChartData.yField"
+                                         [data]="distanceChartData?.data"
+                                         [xField]="distanceChartData?.xField"
+                                         [yField]="distanceChartData?.yField"
                 >
                 </kendo-chart-series-item>
             </kendo-chart-series>
             <kendo-chart-x-axis>
-                <kendo-chart-x-axis-item [title]="{ text: distanceChartData.xAxisItem.titleText }"
-                                         [labels]="{ format: distanceChartData.xAxisItem.labelFormat }">
+                <kendo-chart-x-axis-item [title]="{ text: distanceChartData?.xAxisItem.titleText }"
+                                         [labels]="{ format: distanceChartData?.xAxisItem.labelFormat }">
                 </kendo-chart-x-axis-item>
             </kendo-chart-x-axis>
             <kendo-chart-y-axis>
-                <kendo-chart-y-axis-item [title]="{ text: distanceChartData.yAxisItem.titleText }"
-                                         [labels]="{ format: distanceChartData.yAxisItem.labelFormat }">
+                <kendo-chart-y-axis-item [title]="{ text: distanceChartData?.yAxisItem.titleText }"
+                                         [labels]="{ format: distanceChartData?.yAxisItem.labelFormat }">
                 </kendo-chart-y-axis-item>
             </kendo-chart-y-axis>
-            <kendo-chart-tooltip [format]="distanceChartData.tooltipFormat">
+            <kendo-chart-tooltip [format]="distanceChartData?.tooltipFormat">
             </kendo-chart-tooltip>
         </kendo-chart>
     </div>
@@ -81,26 +107,29 @@
 
     <!-- Chart -->
     <div class="col-12">
-        <kendo-chart [zoomable]="true">
+        <ng-container *ngIf="!speedChartData">
+            <ng-container *ngTemplateOutlet="noDataTemplate"></ng-container>
+        </ng-container>
+        <kendo-chart [class.d-none]="!speedChartData" [zoomable]="true" [pannable]="true">
             <kendo-chart-series>
                 <kendo-chart-series-item type="scatterLine"
-                                         [data]="speedChartData.data"
-                                         [xField]="speedChartData.xField"
-                                         [yField]="speedChartData.yField"
+                                         [data]="speedChartData?.data"
+                                         [xField]="speedChartData?.xField"
+                                         [yField]="speedChartData?.yField"
                 >
                 </kendo-chart-series-item>
             </kendo-chart-series>
             <kendo-chart-x-axis>
-                <kendo-chart-x-axis-item [title]="{ text: speedChartData.xAxisItem.titleText }"
-                                         [labels]="{ format: speedChartData.xAxisItem.labelFormat }">
+                <kendo-chart-x-axis-item [title]="{ text: speedChartData?.xAxisItem.titleText }"
+                                         [labels]="{ format: speedChartData?.xAxisItem.labelFormat }">
                 </kendo-chart-x-axis-item>
             </kendo-chart-x-axis>
             <kendo-chart-y-axis>
-                <kendo-chart-y-axis-item [title]="{ text: speedChartData.yAxisItem.titleText }"
-                                         [labels]="{ format: speedChartData.yAxisItem.labelFormat }">
+                <kendo-chart-y-axis-item [title]="{ text: speedChartData?.yAxisItem.titleText }"
+                                         [labels]="{ format: speedChartData?.yAxisItem.labelFormat }">
                 </kendo-chart-y-axis-item>
             </kendo-chart-y-axis>
-            <kendo-chart-tooltip [format]="speedChartData.tooltipFormat">
+            <kendo-chart-tooltip [format]="speedChartData?.tooltipFormat">
             </kendo-chart-tooltip>
         </kendo-chart>
     </div>
@@ -109,3 +138,8 @@
 
 </div>
 <!-- Speed chart -->
+
+<!-- Not input data -->
+<ng-template #noDataTemplate>
+    <mat-card>No data has been provided yet.</mat-card>
+</ng-template>
