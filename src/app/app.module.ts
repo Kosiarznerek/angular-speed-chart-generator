@@ -11,6 +11,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatCardModule} from '@angular/material/card';
+import {MatButtonModule} from '@angular/material/button';
 
 import {FileDropModule} from 'ngx-file-drop';
 
@@ -18,11 +19,13 @@ import {ChartsModule} from '@progress/kendo-angular-charts';
 import 'hammerjs';
 
 import {MainViewComponent} from './main-view/main-view.component';
+import {InstructionManualComponent} from './instruction-manual/instruction-manual.component';
 
 @NgModule({
     declarations: [
         AppComponent,
-        MainViewComponent
+        MainViewComponent,
+        InstructionManualComponent
     ],
     imports: [
         BrowserModule,
@@ -35,7 +38,8 @@ import {MainViewComponent} from './main-view/main-view.component';
         ChartsModule,
         FileDropModule,
         MatSnackBarModule,
-        MatCardModule
+        MatCardModule,
+        MatButtonModule
     ],
     providers: [],
     bootstrap: [AppComponent]

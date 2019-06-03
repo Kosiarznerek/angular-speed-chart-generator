@@ -3,5 +3,10 @@ mat-toolbar .spacer {
 }
 
 mat-toolbar mat-icon {
-    padding: 0 14px;
+    margin-right: 14px;
+    cursor: pointer;
+}
+
+mat-toolbar mat-icon:focus {
+    outline: none;
 }
