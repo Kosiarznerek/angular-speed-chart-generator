@@ -1,5 +1,5 @@
 # Speed chart generator
-Generates speed chart based on given time and distance as input. Made as an University project.
+Generates speed chart based on given time and distance as input. Made as an University project. [Click here to see project.](https://kosiarznerek.github.io/angular-speed-chart-generator/)
 
 # Screenshots
 ![Screenshot_0](https://raw.githubusercontent.com/Kosiarznerek/angular-speed-chart-generator/master/screenshots/0.png)
